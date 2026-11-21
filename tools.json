@@ -1,0 +1,59 @@
+[
+  {
+    "name": "uk_cma_cases_list",
+    "description": "List UK Competition and Markets Authority (CMA) cases against and about businesses: merger inquiries (who is buying whom), market studies and investigations, Competition Act 1998 cartel and abuse-of-dominance cases, consumer-protection enforcement cases, digital-markets cases, regulatory appeals and subsidy-advice referrals. Filter by company or topic text, case type, open or closed, market sector and opened-date window; newest first when no text is given. Each row gives the case title, case type, state, market sectors, opened and closed dates, outcome code, the CMA's summary, the case page link and (for the first five rows) `latest_update`, the newest dated entry from the case page (e.g. a Phase 1 decision). An empty outcome code does not mean undecided; read one in full with uk_cma_case_read. Criminal-cartel and director-disqualification cases concern individuals and are left out; the count left out for the same filters is returned as `individual_cases_excluded`. Paged by `start` in steps of `count`. Example: query=\"Vodafone\".",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Optional company, product or topic words, e.g. \"Vodafone\" or \"heating oil\"."
+        },
+        "case_type": {
+          "type": "string",
+          "description": "Optional case type: mergers, markets, ca98-and-civil-cartels, consumer-enforcement, digital-markets-unit, regulatory-references-and-appeals, review-of-orders-and-undertakings, sau-referral, information-and-advice-to-government, oim-project."
+        },
+        "case_state": {
+          "type": "string",
+          "description": "Optional: open or closed."
+        },
+        "market_sector": {
+          "type": "string",
+          "description": "Optional CMA sector slug, e.g. energy, financial-services, telecommunications, retail-and-wholesale, healthcare-and-medical-equipment."
+        },
+        "opened_from": {
+          "type": "string",
+          "description": "Optional lower bound on case opened date, YYYY-MM-DD."
+        },
+        "opened_to": {
+          "type": "string",
+          "description": "Optional upper bound on case opened date, YYYY-MM-DD."
+        },
+        "start": {
+          "type": "number",
+          "description": "Offset into the matches, default 0."
+        },
+        "count": {
+          "type": "number",
+          "description": "Rows to return, 1-50, default 20."
+        }
+      }
+    }
+  },
+  {
+    "name": "uk_cma_case_read",
+    "description": "Read one UK Competition and Markets Authority case page in full: case type, state, sectors, opened and closed dates, outcome, the newest dated update (`latest_update`) and full dated `timeline`, the CMA's own text (timetable, decisions, final report notices, undertakings), the list of published case documents with titles and links, and the page's change history, newest first. Use the case `slug` from uk_cma_cases_list results, or the case link. E-mail addresses and phone numbers in the text are removed and counted in `redactions`. Criminal-cartel and director-disqualification cases concern individuals and are refused. Example: slug=\"bt-slash-talktalk-merger-inquiry\".",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "description": "Case slug from uk_cma_cases_list, or the full case page link."
+        }
+      },
+      "required": [
+        "slug"
+      ]
+    }
+  }
+]

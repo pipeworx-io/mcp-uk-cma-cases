@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.pipeworx-io/uk-cma-cases",
+  "title": "Uk Cma Cases",
+  "description": "uk-cma-cases -- the UK Competition and Markets Authority's case pages: merger inquiries, market…",
+  "version": "0.1.0",
+  "websiteUrl": "https://pipeworx.io/packs/uk-cma-cases",
+  "repository": {
+    "url": "https://github.com/pipeworx-io/mcp-uk-cma-cases",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://gateway.pipeworx.io/uk-cma-cases/mcp"
+    }
+  ]
+}
